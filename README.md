@@ -1,6 +1,4 @@
-#MagentaCLOUD mount Script
-
-#MountCLOUD v 0.1
+#tcloud MagentaCLOUD v 0.1
 
 This is a little Shell script to get the t-online Cloud service MagentaCLOUD work as Network drive.
 
@@ -28,6 +26,4 @@ After downloading open a shell ctrl+alt+T
 
 The content of the file *fstab_include* should be included in the original fstab file under */etc/fstab* on the Linux Maschine where we want include the Cloud as Networkdrive. It would be automatically done when you execute magentacloud.sh script.
 
-TODO:
-> change the name of the Readme file to uppercase "README.md"
  
