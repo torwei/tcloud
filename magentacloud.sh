@@ -12,9 +12,9 @@
 #
 # define the necessary variables
 MOUNTPOINT="/media/MagentaCLOUD"
-MYDIR="/home/torsten/syncro/WebDAV"
+MYDIR="/home/torsten/Projects"
 WEBDAV="https://webdav.magentacloud.de"
-LOGFILE="/home/torsten/syncro/rsync.log"
+LOGFILE="/home/torsten/Projects/rsync.log"
 
 
 # Check if the script executed by root
@@ -24,7 +24,11 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 # Ask the user for Settings
-read – p "answer me this " ANSWER
+echo "I'll need some Information from you. So as Username and Password. Please answer the Questions in the next Step."
+read –p "Your Username: " USER
+read -s -p "Your Password: " PASS
+
+
 # first install the necessary packages via apt
 sudo apt install ca-certificates davfs2
 
@@ -34,14 +38,21 @@ sudo apt install ca-certificates davfs2
 # ask the package configuration from davfs2 about the SUID-Bit Flag answer with yes!!
 # new rights for your user
 sudo dpkg-reconfigure davfs2
+
+# Check if the script called with a username (Linuxaccount)
 if [ ! $1 ]; then
-    sudo usermod -aG davfs2 | whoami
+LOGEDIN_USER = whoami
+    sudo usermod -aG davfs2 $LOGEDIN_USER 
 else
     sudo usermod -aG davfs2 $1
 fi
 
 # now create the mountpoint ie. mkdir /media/MagentaCLOUD
+# check if the mountpoint already exist
 if [ ! -d $MOUNTPOINT ]; then
+
+# check if the script called with a special mountpoint.
+# if not use the standart mountpoint set in this script above as the variable MOUNTPOINT
     if [ ! $2 ]; then
         mkdir $MOUNTPOINT
     else
