@@ -1,0 +1,6 @@
+# mount_magentacloud
+# the content of this file should be included ind the original fstab file under /etc/fstab
+# on the Linux Maschine where we want include the Cloud as Networkdrive.
+https://webdav.magentacloud.de /media/MagentaCLOUD/ davfs user,noauto,rw 0 0
+
+
